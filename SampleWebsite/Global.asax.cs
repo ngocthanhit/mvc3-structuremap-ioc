@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Mvc3StructureMapIoc;
+using StructureMap;
+using SampleWebsite.Code;
 
 namespace SampleWebsite
 {
@@ -35,6 +38,14 @@ namespace SampleWebsite
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            IContainer container = new Container(x =>
+            {
+                x.For<IControllerActivator>().Use<StructureMapControllerActivator>();
+                x.For<IBar>().Use<Bar>();
+            });
+
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
         }
     }
 }

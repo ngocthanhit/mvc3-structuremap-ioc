@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using StructureMap;
@@ -16,12 +17,20 @@ namespace Mvc3StructureMapIoc
 
         public object GetService(Type serviceType)
         {
-            throw new NotImplementedException();
+            object instance = _container.TryGetInstance(serviceType);
+
+            if (instance == null && !serviceType.IsAbstract)
+            {
+                _container.Configure(c => c.AddType(serviceType, serviceType));
+                instance = _container.TryGetInstance(serviceType);
+            }
+
+            return instance;
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            throw new NotImplementedException();
+            return _container.GetAllInstances(serviceType).Cast<object>();
         }
     }
 }
