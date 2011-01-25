@@ -16,7 +16,7 @@ namespace Mvc3StructureMapIoc
         public IModelBinder GetBinder(Type modelType)
         {
             var typeMappings = _container.GetInstance<ModelBinderTypeMappingDictionary>();
-            if (typeMappings.ContainsKey(modelType))
+            if (typeMappings != null && typeMappings.ContainsKey(modelType))
                 return _container.GetInstance(typeMappings[modelType]) as IModelBinder;
 
             return null;
