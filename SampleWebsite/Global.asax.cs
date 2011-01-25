@@ -10,9 +10,6 @@ using SampleWebsite.Code;
 
 namespace SampleWebsite
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -39,9 +36,14 @@ namespace SampleWebsite
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
+            var modelBinderTypeMappingDictionary = new ModelBinderTypeMappingDictionary();
+            modelBinderTypeMappingDictionary.Add(typeof(AThing), typeof(AThingModelBinder));
+
             IContainer container = new Container(x =>
             {
                 x.For<IControllerActivator>().Use<StructureMapControllerActivator>();
+                x.For<IModelBinderProvider>().Use<StructureMapModelBinderProvider>();
+                x.For<ModelBinderTypeMappingDictionary>().Use(modelBinderTypeMappingDictionary);
                 x.For<IBar>().Use<Bar>();
             });
 

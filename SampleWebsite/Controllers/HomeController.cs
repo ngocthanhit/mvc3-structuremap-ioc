@@ -27,5 +27,12 @@ namespace SampleWebsite.Controllers
         {
             return View();
         }
+
+        public ActionResult ModelBindAThing(AThing thing)
+        {
+            ViewBag.Stuff = thing.SomeRandomValue;
+
+            return View();
+        }
     }
 }
