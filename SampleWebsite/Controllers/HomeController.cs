@@ -23,6 +23,7 @@ namespace SampleWebsite.Controllers
             return View();
         }
 
+        [LoggingFilter]
         public ActionResult About()
         {
             return View();

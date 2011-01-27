@@ -44,7 +44,13 @@ namespace SampleWebsite
                 x.For<IControllerActivator>().Use<StructureMapControllerActivator>();
                 x.For<IModelBinderProvider>().Use<StructureMapModelBinderProvider>();
                 x.For<ModelBinderTypeMappingDictionary>().Use(modelBinderTypeMappingDictionary);
+                x.For<IFilterProvider>().Use<StructureMapFilterProvider>();
                 x.For<IBar>().Use<Bar>();
+                x.For<ILogger>().Use<Logger>();
+                x.SetAllProperties(p =>
+                    {
+                        p.OfType<ILogger>();
+                    });
             });
 
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));

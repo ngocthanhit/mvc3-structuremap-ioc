@@ -65,6 +65,8 @@
     <Compile Include="Code\AThing.cs" />
     <Compile Include="Code\AThingModelBinder.cs" />
     <Compile Include="Code\Bar.cs" />
+    <Compile Include="Code\Logger.cs" />
+    <Compile Include="Code\LoggingFilter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
