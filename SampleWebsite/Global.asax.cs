@@ -39,12 +39,17 @@ namespace SampleWebsite
             var modelBinderTypeMappingDictionary = new ModelBinderTypeMappingDictionary();
             modelBinderTypeMappingDictionary.Add(typeof(AThing), typeof(AThingModelBinder));
 
+            var globalFilterRegistrationList = new GlobalFilterRegistrationList();
+            globalFilterRegistrationList.Add(new GlobalFilterRegistration { Type = typeof(YourMomGlobalFilter), Order = 2 });
+
             IContainer container = new Container(x =>
             {
                 x.For<IControllerActivator>().Use<StructureMapControllerActivator>();
                 x.For<IModelBinderProvider>().Use<StructureMapModelBinderProvider>();
                 x.For<ModelBinderTypeMappingDictionary>().Use(modelBinderTypeMappingDictionary);
                 x.For<IFilterProvider>().Use<StructureMapFilterProvider>();
+                x.For<IFilterProvider>().Use<StructureMapGlobalFilterProvider>();
+                x.For<GlobalFilterRegistrationList>().Use(globalFilterRegistrationList);
                 x.For<IBar>().Use<Bar>();
                 x.For<ILogger>().Use<Logger>();
                 x.SetAllProperties(p =>
