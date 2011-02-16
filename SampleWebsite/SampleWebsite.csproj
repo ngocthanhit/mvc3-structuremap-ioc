@@ -67,6 +67,8 @@
     <Compile Include="Code\Bar.cs" />
     <Compile Include="Code\Logger.cs" />
     <Compile Include="Code\LoggingFilter.cs" />
+    <Compile Include="Code\RandomSentenceValueProvider.cs" />
+    <Compile Include="Code\RandomSentenceGenerator.cs" />
     <Compile Include="Code\YourMomGlobalFilter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -106,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\ModelBindAThing.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\GetASentence.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

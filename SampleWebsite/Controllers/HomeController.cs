@@ -35,5 +35,11 @@ namespace SampleWebsite.Controllers
 
             return View();
         }
+
+        public ActionResult GetASentence(string getMeASentenceYo)
+        {
+            ViewBag.ASentence = getMeASentenceYo;
+            return View();
+        }
     }
 }

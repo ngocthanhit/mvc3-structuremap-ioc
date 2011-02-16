@@ -22,6 +22,12 @@ namespace SampleWebsite
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "GetASentence",
+                "{controller}/GetASentence/{getMeASentenceYo}",
+                new { controller = "Home", action = "GetASentence", getMeASentenceYo = "Jimmy" }
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
@@ -52,6 +58,7 @@ namespace SampleWebsite
                 x.For<GlobalFilterRegistrationList>().Use(globalFilterRegistrationList);
                 x.For<IBar>().Use<Bar>();
                 x.For<ILogger>().Use<Logger>();
+                x.For<ValueProviderFactory>().Use<RandomSentenceValueProviderFactory>();
                 x.SetAllProperties(p =>
                     {
                         p.OfType<ILogger>();
